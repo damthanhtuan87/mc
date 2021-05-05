@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PXF6MB2');</script>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://image.mkt.vinhomes.vn/lib/fe3b15717564047a741678/m/1/36064842-31f0-4693-a14b-5bfbeb37569e.png">
+  <meta property="og:title" content="Phiếu kích hoạt thẻ hội viên Pearl Club">
+<meta property="og:image" content="">
+<meta property="og:url" content="https://experience.vinpearl.com/kich-hoat-the-pearlclub">
+ <style class="main_style">
+.content-desktop { display: block; }
+.content-mobile { display: none; }
+@media screen and (max-width: 768px) {
+  .content-desktop { display: none; }
+  .content-mobile { display: block; }
+}
+.layout-canvas-g { background-color: #FFFFFF; background-image: url("https://image.mkt.vinhomes.vn/lib/fe3b15717564047a741678/m/3/c77c28d9-4e77-470d-beda-a9ee2ec53099.jpg"); background-repeat: no-repeat; background-position: 50% 50%; background-size: cover; border: 0px; box-sizing: border-box; padding: 0px; width: 100%; }
+.layout-canvas-g > .header, .layout-canvas-g > .section, .layout-canvas-g > .footer { position: relative; overflow: hidden; width: 100%; overflow-wrap: break-word; }
+.layout-canvas-g > .section { margin: 0px; }
+.layout-canvas-g > .section > .columns { box-sizing: border-box; overflow-wrap: break-word; }
+body { color: #000000; font-family: Arial; font-size: 12px; margin: 0px auto; max-width: 1920px; background-color: #FFFFFF; line-height: 1; padding: 0px; }
+@media only screen and (max-width: 480px) {
+  .mobile-hidden { display: none !important; }
+  .responsive-td { width: 100% !important; display: block !important; padding: 0px !important; }
+}
+.layout-canvas-g > .section > .columns { width: 100%; }
+</style>
+
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PXF6MB2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>
+%%[
+var @title, @firstname, @surname, @dob, @cmnd, @email, @tel, @vouchercode, @diachi, @quanhuyen, @thanhpho, @totalrow, @employeeNum, @@rowsUpdated
+
+set @title = RequestParameter("TitleName")
+set @firstname = RequestParameter("FirstName")
+set @surname = RequestParameter("SurName")
+set @dob = RequestParameter("DateOfBirth")
+set @cmnd = RequestParameter("CMND")
+set @email = RequestParameter("Email")
+set @tel = RequestParameter("Tel")
+set @vouchercode = RequestParameter("VoucherCode")
+set @diachi = RequestParameter("AddressShip")
+set @quanhuyen = RequestParameter("CityShip")
+set @thanhpho = RequestParameter("DistrictShip")
+set @employeeNum = RequestParameter("EmployeeNum")
+set @totalrow = Add(DataExtensionRowCount("PearlClub_kichhoatthe_cbnv"),1)
+
+var @dieukien, @chinhsach
+IF RequestParameter("dieukien") == "on" THEN
+    SET @dieukien = "true"
+ELSE
+    SET @dieukien = "false"
+ENDIF 
+
+IF RequestParameter("chinhsach") == "on" THEN
+    SET @chinhsach = "true"
+ELSE
+    SET @chinhsach = "false"
+ENDIF
+
+if @dieukien == "true" AND @chinhsach == "true" AND RequestParameter("submitted") == true then
+InsertData(
+        "PearlClub_kichhoatthe_cbnv",
+        "TitleName", RequestParameter("TitleName"),
+        "FirstName", RequestParameter("FirstName"),
+  "EmployeeNum", RequestParameter("EmployeeNum"),
+        "SurName", RequestParameter("SurName"),
+        "DateOfBirth", RequestParameter("DateOfBirth"),
+       "CMND", RequestParameter("CMND"),
+       "Email", RequestParameter("Email"),
+       "Tel", RequestParameter("Tel"),
+       "VoucherCode", RequestParameter("VoucherCode"),
+       "AddressShip", RequestParameter("AddressShip"),
+       "CityShip", RequestParameter("CityShip"),
+       "DistrictShip", RequestParameter("DistrictShip"),
+              "SubmitDate", NOW(),
+       "STT", @totalrow
+       )
+set @rowsUpdated  = UpdateData("PearlClub_cbnv",1,"Email", @email, "isSubmitted", "True") 
+endif
+
+]%%
+</script>
+
+
+<style>
+body {
+  font-family: "Montserrat", sans-serif !important;
+  -webkit-appearance: none;
+  }
+  #content {
+   display: flex;
+    justify-content: center;
+    font-size: 0.65em;
+    margin: 5px auto;
+    font-weight: 600;
+  }
+  input:focus, select:focus {
+  outline-color: #cda360;
+  }
+  
+  .row-no-padding > [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+  .container p {
+  line-height: 1.5;
+  }
+  ::placeholder { 
+  color: #333;
+  opacity: 1;
+    font-size:12px;
+}
+  input[type=text],input[type=number],input[type=email],input[type=tel], input[type=date], select {
+  width: 100%;
+  padding: 10px;
+  border: 0px solid #ccc;
+background-color: #f1f2f2;
+    font-family: "Montserrat", sans-serif !important;
+-webkit-appearance: none;
+    border-radius: 5px;
+    margin-top: 5px;
+    color: #333;
+  opacity: 1;
+    font-size:12px;
+}
+
+  
+  label {
+    color: #333; 
+    font-size: .825em;
+    line-height: 1.2;
+}
+  
+  input[type=submit] {
+  background: rgb(202,165,112);
+background: linear-gradient(90deg, rgba(202,165,112,1) 0%, rgba(231,212,172,1) 50%, rgba(202,165,112,1) 100%);
+  color: #262D63;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 12px;
+  font-family: "Montserrat", sans-serif !important;
+  line-height: 25px;
+  font-weight: bold;
+    white-space: normal;
+    width: 280px;
+    -webkit-appearance: none;
+    font-size: 20px;
+}
+
+input[type=submit]:hover {
+  background-color: #006181;
+  -webkit-appearance: none;
+}
+
+  .form-group {
+  height: 35px;
+    margin-bottom: 10px;
+  }
+    .row2 { 
+  padding: 20px;
+   
+    border-radius: 5px;
+      margin-bottom: 40px;
+      border: 1px solid #f5eddf;
+}
+  .al-top{
+  margin-top: 5px;
+  }
+  
+  .condition{
+  text-align: center;
+    margin-bottom: 25px;
+  }
+  
+  .condition label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #262D63;
+  }
+  
+  .condition input[type=checkbox], input[type=radio] {
+    transform: scale(1.2);
+    margin: 0 10px;
+  }
+  
+  
+  .text-form {
+    text-align: center;
+    color: #333;
+    font-size:14px;
+    font-weight: 600;
+  }
+ 
+  
+  .form-group .glyphicon {
+  padding: 2px 5px 0 5px;
+    transform: rotate(45deg);
+    color: #cda360;
+    font-size: 9px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .alcenter {
+  text-align: center;
+    margin: 5px 0px;
+  }
+
+  
+  .row2:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+  @media screen and (max-width: 600px) {
+     input[type=date], select {
+-webkit-appearance: none;
+       padding: 12px;
+  border: 1px solid #ccc;
+       background-color:#fff;
+}
+    
+    .condition input[type=checkbox], input[type=radio] {
+    transform: scale(1) !important;
+    margin: 0 5px !important;
+  }
+    .condition label {
+    font-size: 12px !important;
+  } input[type=text],input[type=number],input[type=email],input[type=tel],input[type=date], select {
+       -webkit-appearance: none;
+    }
+    .box-header {
+    font-size: 18px !important;
+  }
+    .header-en {
+    font-size: 15px !important;
+  }
+    
+  }
+    .title-top {
+    text-align: center;
+     color: #333;
+      font-weight: bold;
+      margin-top:20px;
+    }
+  
+  .title-top-en {
+    text-align: center;
+     color: #333;
+      font-style: italic;
+    margin-bottom:20px;
+    }
+  
+  .box-header {
+  color:#cda360;
+    font-weight: bold;
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 0 !important;
+  }
+  
+  .header-en {
+  font-style: italic; 
+    color: #262D63; 
+    font-size: 20px;
+  }
+  
+  .check-address {
+  text-align:center; 
+   margin-bottom:20px;
+    color:#262D63; 
+  }
+  
+  .en {
+  font-weight: 400;
+  }
+  
+  .back {
+   text-align: center; 
+    font-size: 24px;
+    margin: 40px auto;
+  }
+  
+  .back a:hover {
+  color: #cda360 !important;
+  }
+  .back a:focus {
+  color: #cda360;
+  }
+  .back a {
+  text-decoration: none;
+    color: #262D63 !important;
+  }
+      
+</style>
+
+
+
+
+
+<div class="container">
+  <div class="row row-no-padding">     
+  <p class="title-top">
+    QUÝ KHÁCH VUI LÒNG ĐIỀN ĐẦY ĐỦ THÔNG TIN THEO CÁC MỤC SAU (*) Thông tin bắt buộc
+  </p>
+  <p class="title-top-en">
+    Please fill out this form (*) Required field
+  </p>
+
+  
+<form action="%%=RequestParameter('PAGEURL')=%%#submit_btn" method="post">
+ 
+
+    <div class="row2">
+      <div class="text-form">
+       
+  
+
+
+    </div>     
+
+      
+      <div class="form-group">
+      <div class="al-top content-desktop col-md-2 col-sm-12 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Họ và tên: *<br><span class="en">(Fullname)</span></label>   
+    </div>
+        <div class="al-top content-mobile col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Họ và tên: *<span class="en"> (Fullname)</span></label>   
+    </div>
+        
+      <div class="col-md-3 col-sm-12 col-xs-12">   
+        <select name="TitleName">
+     <option value="NonTitle">Danh xưng (Title)</option>
+    <option value="Mr">Ông / Mr</option>
+    <option value="Mrs">Bà / Mrs</option>
+  </select>
+    </div>
+      <div class="col-md-3 col-sm-12 col-xs-12">
+        <input type="text" name="FirstName" required="" value="%%=v(@firstname)=%%" placeholder="Tên (Firstname)">         
+    </div>
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <input type="text" name="SurName" required="" value="%%=v(@surname)=%%" placeholder="Họ (Surname)">         
+    </div>
+      </div>
+   <div class="form-group">
+      <div class="al-top content-desktop col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Mã nhân viên: *<br><span class="en">(Employee Number)</span></label>   
+    </div>
+         <div class="al-top content-mobile col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Mã nhân viên: *<span class="en"> (Employee Number)</span></label>   
+    </div>
+        
+      <div class="col-md-10 col-sm-12 col-xs-12">
+        <input type="text" id="" name="EmployeeNum" required="" value="%%=v(@employeeNum)=%%" placeholder="">         
+    </div>
+      
+      <div class="form-group">
+      <div class="al-top content-desktop col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Ngày sinh: *<br><span class="en">(Date of Birth)</span></label>   
+    </div>
+         <div class="al-top content-mobile col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Ngày sinh: *<span class="en"> (Date of Birth)</span></label>   
+    </div>
+        
+      <div class="col-md-10 col-sm-12 col-xs-12">
+        <input type="date" id="" name="DateOfBirth" required="" value="%%=v(@dob)=%%" placeholder="">         
+    </div>
+     
+      </div>
+      
+      <div class="form-group">
+        <div class="al-top content-desktop col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>CMND/ Hộ chiếu: *<br><span class="en">(ID/ Passport)</span></label>   
+    </div>
+        <div class="al-top content-mobile col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>CMND/ Hộ chiếu: *<span class="en"> (ID/ Passport)</span></label>   
+    </div>
+        
+      <div class="col-md-10 col-sm-12 col-xs-12">
+        <input type="text" name="CMND" required="" value="%%=v(@cmnd)=%%" placeholder="">      
+    </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="al-top content-desktop col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Email: *<br><span class="en">(Email)</span></label>   
+    </div>
+         <div class="al-top content-mobile col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Email: *<span class="en"> (Email)</span></label>   
+    </div>
+        
+      <div class="col-md-10 col-sm-12 col-xs-12">
+        <input type="email" data-field-type="EmailAddress" name="Email" required="" value="%%=v(@email)=%%" placeholder="">      
+    </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="al-top content-desktop col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Số điện thoại: *<br><span class="en">(Mobile Phone)</span></label>   
+    </div>
+        <div class="al-top content-mobile col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Số điện thoại: *<span class="en"> (Mobile Phone)</span></label>   
+    </div>
+        
+      <div class="col-md-10 col-sm-12 col-xs-12">
+        <input type="tel" name="Tel" required="" value="%%=v(@tel)=%%" placeholder="">
+    </div>
+      </div>
+           <div class="form-group">
+        <div class="al-top content-desktop col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Mã Voucher: *<br><span class="en">(Voucher code)</span></label>   
+    </div>
+        <div class="al-top content-mobile col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Mã Voucher: *<span class="en"> (Voucher code)</span></label>   
+    </div>
+        
+      <div class="col-md-10 col-sm-12 col-xs-12">
+         <input type="text" name="VoucherCode" value="%%=v(@vouchercode)=%%" required="" placeholder="Mã đã được gửi qua email xác nhận từ vinpearl.com (Voucher code was included in vinpearl.com confirmation email)">    
+    </div>
+         </div>      
+
+              <div class="form-group">
+      <div class="al-top content-desktop col-md-2 col-sm-2 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Địa chỉ nhận thẻ: *<br><span class="en">(Shipping Address)</span></label>   
+    </div>
+         <div class="al-top content-mobile col-md-2 col-sm-12 col-xs-12">
+       <span class="glyphicon glyphicon-stop
+                    " aria-hidden="true"></span><label>Địa chỉ nhận thẻ: *<span class="en"> (Shipping Address)</span></label>   
+    </div>
+        
+      <div class="col-md-10 col-sm-12 col-xs-12">
+        <input type="text" id="AddressShip" name="AddressShip" required="" value="" placeholder="">         
+    </div>
+      </div>
+    <div class="form-group">
+      <div class="content-desktop col-md-2 col-sm-2">
+            
+    </div>
+
+      <div class="col-md-5 col-sm-12 col-xs-12">
+        <input type="text" id="CityShip" name="CityShip" value="" required="" placeholder="Tỉnh/Thành phố (City)">         
+    </div>
+      <div class="col-md-5 col-sm-12 col-xs-12">
+        <input type="text" name="DistrictShip" required="" id="DistrictShip" value="" placeholder="Quận/Huyện (District)">         
+    </div>
+    </div>
+    </div>
+  
+  <div class="condition">
+  <div class="form-check">
+      <input type="checkbox" id="dieukien" class="form-check-input" name="dieukien">
+    <a href="https://experience.vinpearl.com/dieu-kien-dieu-khoan-pearlclub" target="_blank"><label class="form-check-label">Điều kiện  điều khoản<span class="en"> (Terms & Conditions)</span></label>
+<br></a>
+    <input type="checkbox" id="chinhsach" class="form-check-input" name="chinhsach">
+    <a href="https://www.vinpearl.com/chinh-sach-bao-mat-thong-tin/" target="_blank"><label class="form-check-label">Chính sách bảo mật<span class="en"> (Privacy Policies)</span></label></a>
+    </div>  
+  </div>
+  
+  <hr style="text-align: center; width: 100%; color: #cda360;background-color: #cda360; height:1px;border-width:0; ">
+  
+  <div class="text-form" style="color:#262D63; line-height: 1.5">
+    <p>
+      Bằng việc nhấn gửi Phiếu đăng ký này, tôi xác nhận các thông tin trên đây là đúng sự thật và chấp nhận toàn bộ các điều khoản, điều kiện của Chương trình Pearl Club đăng tải và cập nhật chính thức trên website www.vinpearl.com và đồng ý để đơn vị hoặc đối tác phát hành thẻ Pearl Club chuyển các thông tin tại Phiếu đăng ký này cho Vinpearl phục vụ cho việc đăng ký và mở thẻ.
+    </p>
+    
+    <p class="en">
+      (By submitting this form, I certify that the information provided here is true and accurate. I have read, understood and accept all the terms and conditions of the Pearl Club Program which is available on www.vinpearl.com and agree to our partnership combining my information in this form for registering Pearl Club card at Vinpearl).
+    </p>
+  </div>
+  
+  <div class="alcenter col-md-12 col-sm-12 col-xs-12">
+         <input name="submitted" type="hidden" value="true">
+    <input id="submit_btn" type="submit" value="GỬI THÔNG TIN Submit form">
+  </div>
+  
+  
+  </div></form>
+</div>
+
+%%[ 
+if @dieukien == "true" AND @chinhsach == "true" AND RequestParameter("submitted") == true then]%%
+<div class="container" style="margin-top:10px;text-align: center">
+  <img class="img-responsive content-desktop" src="https://image.mkt.vinhomes.vn/lib/fe3b15717564047a741678/m/3/3c919e84-4318-4900-b091-6507dd2c9d75.png" alt="Cảm ơn quý khách đã đăng ký Pearl Club">
+  <img class="img-responsive content-mobile" src="https://image.mkt.vinhomes.vn/lib/fe3b15717564047a741678/m/3/0c3f8629-b45e-4fbb-b540-34224f674de6.png" alt="Cảm ơn quý khách đã đăng ký Pearl Club">
+</div>
+%%[ elseif (RequestParameter("dieukien") == false OR RequestParameter("chinhsach") == false) AND   RequestParameter("submitted") == true then]%%
+<div class="container" style="margin-top:10px; text-align: center">
+  <img class="img-responsive content-desktop" src="https://image.mkt.vinhomes.vn/lib/fe3b15717564047a741678/m/3/3cdb9ea6-5dc7-4866-814a-73bb2d917aa9.png" alt="Điều khoản sử dụng phiếu đăng ký Pearl Club">
+  <img class="img-responsive content-mobile" src="https://image.mkt.vinhomes.vn/lib/fe3b15717564047a741678/m/3/e3dc3d87-4ce7-4078-a4d5-7ad037db867e.png" alt="Điều khoản sử dụng phiếu đăng ký Pearl Club">
+</div>
+ %%[ endif ]%%
+
+<div class="back">
+    <a href="https://experience.vinpearl.com/pearlclub"><span class="glyphicon glyphicon glyphicon-arrow-left
+                    " aria-hidden="true"></span><span style="font-weight: bold;"> QUAY LẠI TRANG CHỦ</span><span class="en"> (Back to home page)</span></a>
+  </div>
+<script>
+function checkAddress() {
+if (document.getElementById("CheckAddress").checked) {
+        document.getElementById("AddressShip").value = document.getElementById("Address").value;
+document.getElementById("CityShip").value = document.getElementById("City").value;
+  document.getElementById("DistrictShip").value = document.getElementById("District").value;
+}
+else {
+  document.getElementById("AddressShip").value = "";
+  document.getElementById("CityShip").value = "";
+  document.getElementById("DistrictShip").value = "";
+}
+  }
+  
+  $("#boxyear").datepicker({
+    format: "yyyy",
+    autoclose: true,
+    viewMode: "years", 
+    minViewMode: "years"
+});
+  
+  $("#boxmonth").datepicker({
+    format: "mm",
+    autoclose: true, 
+    viewMode: "months", 
+    minViewMode: "months"
+});
+  
+   $("#boxday").datepicker({
+    format: "dd/mm/yyyy",
+     autoclose: true, 
+    startView: "days", 
+    minViewMode: "days" 
+});
+  
+</script>
+
+</div>
+
+<div class="layout layout-canvas-g">
+ <div class="section">
+  <div class="columns col1">
+   <div data-type="slot" data-key="col1" data-label="Drop blocks or content here"></div>
+  </div>
+ </div>
+</div>
+</body>
+</html>
